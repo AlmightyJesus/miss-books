@@ -1,10 +1,10 @@
 'use strict';
 
-import bookApp from './cmps/book-app.cmp.js';
-import bookDetails from './cmps/book-details.cmp.js';
-import aboutPage from './cmps/about.cmp.js';
-import homepage from './cmps/homepage.cmp.js';
-import bookReview from './cmps/review-add.cmp.js';
+import bookApp from './pages/book-app.cmp.js';
+import bookDetails from './pages/book-details.cmp.js';
+import aboutPage from './pages/about.cmp.js';
+import homepage from './pages/homepage.cmp.js';
+import bookReview from './pages/review-add.cmp.js';
 
 
 

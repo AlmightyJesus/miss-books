@@ -1,7 +1,7 @@
 'use strict';
-import LongTxt from './long-txt.cmp.js';
+import LongTxt from '../cmps/long-txt.cmp.js';
 import reviewAdd from './review-add.cmp.js';
-import reviews from './reviews.cmp.js';
+import reviews from '../cmps/reviews.cmp.js';
 import { bookService } from '../services/book-service.js';
 
 export default {

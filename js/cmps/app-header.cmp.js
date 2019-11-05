@@ -9,6 +9,7 @@ export default {
         <router-link to="/books" exact>books</router-link>
         <router-link to="/about">About</router-link>
         <router-link to="/" exact>Homepage</router-link>
+        <router-link to="/add" exact>Add A Book</router-link>
     </nav>
     `,
     data() {

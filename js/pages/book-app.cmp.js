@@ -40,7 +40,6 @@ export default {
         bookService.getBooks()
             .then(books => {
                 this.books = books
-                console.log(this.books)
             })
 
     },

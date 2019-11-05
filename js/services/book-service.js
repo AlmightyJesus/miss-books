@@ -6,7 +6,10 @@ export const bookService = {
     getBooks,
     findBook,
     addReview,
-    removeReview
+    removeReview,
+    getBooksByTitle,
+    addBook,
+    getNextBookId
 }
 
 function findBook(bookId) {
@@ -30,6 +33,48 @@ function removeReview(bookId, idx) {
         utilsService.saveToStorage(BOOKS_KEY, gBooks)
     })
     return Promise.resolve(book)
+}
+function getBooksByTitle(title) {
+    let prm = axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:"${title}"&key=AIzaSyBrh2mKC19GI4B3XHUGHS4MfxDzKzn6skc`)
+    let booksPrm = prm.then(booksPrm => booksPrm.data.items)
+    return booksPrm
+}
+
+function addBook(book) {
+    if (gBooks.some(currBook => currBook.id === book.id)) {
+        return Promise.reject('Book already exists!')
+    }
+    if (!book.saleInfo.listPrice) {
+        book.saleInfo.listPrice = {
+            amount: Math.floor((Math.random() * 100)),
+            currencyCode: 'ILS'
+        }
+    }
+    var bookInfo = book.volumeInfo
+    var newBook = {
+        id: book.id,
+        title: bookInfo.title,
+        authors: bookInfo.authors,
+        categories: bookInfo.categories,
+        language: bookInfo.language,
+        publishedDate: bookInfo.publishedDate,
+        thumbnail: bookInfo.imageLinks.thumbnail,
+        listPrice: book.saleInfo.listPrice,
+        pageCount: bookInfo.pageCount,
+        description: bookInfo.description,
+        reviews: []
+    }
+    gBooks.unshift(newBook)
+    utilsService.saveToStorage(BOOKS_KEY, gBooks)
+    return Promise.resolve(newBook)
+}
+
+function getNextBookId(bookId, diff) {
+    var idx = gBooks.findIndex(book => book.id === bookId);
+    idx += diff
+    if (idx === gBooks.length) idx = 0;
+    else if (idx === -1) idx = gBooks.length - 1;
+    return gBooks[idx].id
 }
 
 let defaultBooks = [

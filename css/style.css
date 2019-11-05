@@ -11,7 +11,7 @@ body {
 
 .nav-bar {
     border: 2px solid #0D0221;
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
 }
@@ -83,21 +83,20 @@ a {
 /* book-preview */
 
 .review-img {
-    width: 45%;
+    width: 55%;
+    height: 56%;
 }
 
 /* homepage */
 
-.homepage-container{
+.homepage-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.homepage-img{
-
-}
+.homepage-img {}
 
 /* user msg */
 

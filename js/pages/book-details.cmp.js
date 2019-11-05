@@ -13,19 +13,33 @@ export default {
         <h2 :class="priceClass">Price: {{book.listPrice.amount}}{{book.listPrice.currencyCode}}</h2>
         <h2>{{isOnSale}}</h2>
         <long-txt v-bind:txt="book.description" :key="book.id"></long-txt>
-        <router-link :to="editBookLink">Write a review</router-link>
+        <router-link :to="getBookLink">Write a review</router-link>
         <ul class="reviews-list">
             <reviews v-for="(review,idx) in book.reviews" :bookId="book.id" :idx="idx" :review="review" :key="idx"></reviews>
         </ul>
+        <router-link :to="'/book/'+prevBookId">&lt; Prev Book</router-link>
+        <router-link :to="'/book/'+nextBookId">Next Book &gt;</router-link>
     </section>
     `,
     data() {
         return {
             currYear: new Date().getFullYear(),
             book: '',
+            nextBookId: '',
+            prevBookId: ''
         }
     },
     methods: {
+        loadBook() {
+            const bookId = this.$route.params.id;
+            if(bookId)
+            bookService.findBook(bookId)
+                .then(book => {
+                    this.book = book;
+                    this.nextBookId = bookService.getNextBookId(book.id,1);
+                    this.prevBookId = bookService.getNextBookId(book.id,-1);
+                })
+        }
     },
     computed: {
         showBookLength() {
@@ -47,20 +61,21 @@ export default {
         isOnSale() {
             if (this.book.listPrice.isOnSale) return 'On Sale!'
         },
-        editBookLink() {
+        getBookLink() {
             return `/book/review/${this.book.id}`
         },
-
-
     },
     created() {
-        const bookId = this.$route.params.id;
-        bookService.findBook(bookId)
-            .then(book => this.book = book)
+        this.loadBook() 
     },
     components: {
         LongTxt,
         reviewAdd,
         reviews
+    },
+    watch:{
+        '$route.params.id'() {
+            this.loadBook();
+        }
     }
 }

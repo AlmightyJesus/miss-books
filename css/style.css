@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    font-family: worksans;
+}
+
+body {
+    background-image: url(../img/bcg2.jpg);
+}
+
+/* nav */
+
+.nav-bar {
+    border: 2px solid #0D0221;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-bar a {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+a {
+    color: black;
+}
+
+.nav-bar a:visited {
+    text-decoration: none;
+}
+
+.nav-bar a:active {
+    color: #A6CFD5;
+}
+
+.router-link-active {
+    color: #A6CFD5
+}
+
+.book-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-list a {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 32%;
+    height: 330px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #545E75;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.book-list a li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.book-list a li h2, h3 {
+    margin: 0;
+    text-align: center;
+    max-height: 23px;
+}
+
+.green {
+    color: darkseagreen;
+}
+
+.red {
+    color: red;
+}
+
+/* book-preview */
+
+.review-img {
+    width: 45%;
+}
+
+/* homepage */
+
+.homepage-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage-img{
+
+}
+
+/* user msg */
+
+.user-msg {
+    background-color: lightgray;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.user-msg button {
+    float: right;
+}
+
+.user-msg.success {
+    background-color: lightgreen;
+}
+
+.user-msg.error {
+    background-color: lightcoral;
+}
+
+@font-face {
+    font-family: worksans;
+    src: url(/fonts/work-sans/WorkSans-Regular.ttf);
+}
